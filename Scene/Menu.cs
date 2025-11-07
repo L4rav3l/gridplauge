@@ -2,7 +2,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
-using System;
 
 namespace gridplauge;
 
@@ -67,7 +66,8 @@ public class Menu : IScene
         {
             if(_Selected == 0)
             {
-                _sceneManager.AddScene(new GameStart())
+                _sceneManager.AddScene(new GameStart(_graphics, _sceneManager, _content), "gamestart");
+                _sceneManager.ChangeScene("gamestart");
             } else {
                 GameData.Quit = true;
             }

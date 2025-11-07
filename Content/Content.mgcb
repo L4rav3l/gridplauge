@@ -23,3 +23,12 @@
 #begin PixelifySans-Regular.ttf
 /copy:PixelifySans-Regular.ttf
 
+#begin texture.png
+/copy:texture.png
+
+#begin texture.tsx
+/copy:texture.tsx
+
+#begin tilemap.tmx
+/copy:tilemap.tmx
+
