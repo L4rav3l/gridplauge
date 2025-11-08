@@ -121,7 +121,7 @@ public class House : IScene
         spriteBatch.DrawString(_pixelfont, GameData.CitizenData[(GameData.House.Value * 3) - 3 + _selected].Name, Name, Color.White);
 
         Vector2 QuarantineM = _pixelfont.MeasureString("Quarantine");
-        Vector2 Quarantine = new Vector2((Width / 2) - (QuarantineM.X / 2), (Height / 4) + (QuarantineM.Y / 2) + 500);
+        Vector2 Quarantine = new Vector2((Width / 2) - (QuarantineM.X / 2), (Height / 4) - (QuarantineM.Y / 2) + 500);
 
         spriteBatch.DrawString(_pixelfont, "Quarantine", Quarantine, Color.White);
     }

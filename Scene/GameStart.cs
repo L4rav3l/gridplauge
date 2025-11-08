@@ -135,7 +135,7 @@ public class GameStart : IScene
 
             GameData.CitizenData[i].Name = Names[rnd.Next(0, 100)];
             GameData.CitizenData[i].HouseNumber = (int)(i / 3);
-            GameData.CitizenData[i].Temperature = (double)(rnd.Next(3450, 3750) / 100);
+            GameData.CitizenData[i].Temperature = (double)(rnd.Next(3400, 3600) / 100);
             GameData.CitizenData[i].Infected = false;
             GameData.CitizenData[i].InQuarantine = false;
         }

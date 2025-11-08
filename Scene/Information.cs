@@ -13,6 +13,7 @@ public class Information : IScene
     private ContentManager _content;
 
     private SpriteFont _pixelfont;
+    private double _cooldown;
 
     public Information(GraphicsDevice _graphics, SceneManager _sceneManager, ContentManager _content)
     {
@@ -31,6 +32,13 @@ public class Information : IScene
         int Width = _graphics.Viewport.Width;
         int Height = _graphics.Viewport.Height;
 
+        double elapsed = gameTime.ElapsedGameTime.TotalSeconds * 1000;
+
+        if(_cooldown > 0)
+        {
+            _cooldown -= elapsed;
+        }
+
         MouseState mouse = Mouse.GetState();
 
         Vector2 BackM = _pixelfont.MeasureString("Back");
@@ -41,7 +49,11 @@ public class Information : IScene
         }
 
         Vector2 ToggleM = _pixelfont.MeasureString("OPEN/CLOSE DOOR");
-        Console.WriteLine(Vector2.Distance(new Vector2((Width / 2) - (ToggleM.X / 2) + 177, (Height / 4) - (ToggleM.Y / 2) + 380), new Vector2(mouse.X, mouse.Y)));
+        if(Vector2.Distance(new Vector2((Width / 2) - (ToggleM.X / 2) + 177, (Height / 4) - (ToggleM.Y / 2) + 380), new Vector2(mouse.X, mouse.Y)) < 70 && mouse.LeftButton == ButtonState.Pressed && _cooldown <= 0)
+        {
+            GameData.BorderClosed = !GameData.BorderClosed;
+            _cooldown = 300;   
+        }
     }
 
     public void Draw(SpriteBatch spriteBatch)
@@ -97,5 +109,15 @@ public class Information : IScene
         Vector2 Toggle = new Vector2((Width / 2) - (ToggleM.X / 2), (Height / 4) - (ToggleM.Y / 2) + 350);
 
         spriteBatch.DrawString(_pixelfont, "OPEN/CLOSE DOOR", Toggle, Color.White);
+
+        Vector2 TempM = _pixelfont.MeasureString("Average Temperature: 34-37");
+        Vector2 Temp = new Vector2((Width / 2) - (TempM.X / 2), (Height / 4)- (TempM.Y / 2) + 450);
+
+        spriteBatch.DrawString(_pixelfont, "Average Temperature: 34-36", Temp, Color.White);
+
+        Vector2 NextDayM = _pixelfont.MeasureString("Next Day");
+        Vector2 NextDay = new Vector2((Width / 2) - (NextDayM.X / 2), (Height / 4) - (NextDayM.Y / 2) + 550);
+
+        spriteBatch.DrawString(_pixelfont, "Next Day", NextDay, Color.White);
     }
 }
