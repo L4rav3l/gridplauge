@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Content;
+using System;
 
 namespace gridplauge;
 
@@ -12,6 +13,9 @@ public class House : IScene
     private SceneManager _sceneManager;
 
     private SpriteFont _pixelfont;
+    
+    private int _selected = 0;
+    private double _clickCooldown;
 
     public House(GraphicsDevice _graphics, SceneManager _sceneManager, ContentManager _content)
     {
@@ -29,10 +33,47 @@ public class House : IScene
     {
         MouseState mouse = Mouse.GetState();
 
-        if(Vector2.Distance(new Vector2(100, 100), new Vector2(mouse.X, mouse.Y)) < 50)
+        int Width = _graphics.Viewport.Width;
+        int Height = _graphics.Viewport.Height;
+
+        double elapsed = gameTime.ElapsedGameTime.TotalSeconds * 1000;
+
+        if(_clickCooldown >= 0)
+        {
+            _clickCooldown -= elapsed;
+        }
+
+        if(Vector2.Distance(new Vector2(100, 100), new Vector2(mouse.X, mouse.Y)) < 50 && mouse.LeftButton == ButtonState.Pressed)
         {
             _sceneManager.ChangeScene("maps");
         }
+
+        if(Vector2.Distance(new Vector2(Width / 2 - 50, Height / 4 + 400), new Vector2(mouse.X, mouse.Y)) < 50 && mouse.LeftButton == ButtonState.Pressed && _selected >= 1 && _clickCooldown <= 0)
+        {
+            _selected--;
+            _clickCooldown = 150;
+        }
+
+        if(Vector2.Distance(new Vector2(Width / 2 + 50, Height / 4 + 400), new Vector2(mouse.X, mouse.Y)) < 50 && mouse.LeftButton == ButtonState.Pressed && _selected < 2 && _clickCooldown <= 0)
+        {
+            _selected++;
+            _clickCooldown = 150;
+        }
+
+        Vector2 QuarantineM = _pixelfont.MeasureString("Quarantine");
+        Vector2 Quarantine = new Vector2((Width / 2), (Height / 4) + (QuarantineM.Y / 2) + 500 + 25);
+
+        if(Vector2.Distance(Quarantine, new Vector2(mouse.X, mouse.Y)) <= 100 && mouse.LeftButton == ButtonState.Pressed && _clickCooldown <= 0)
+        {
+            _clickCooldown = 400;
+
+            if(GameData.QuarantineSize > 0 && GameData.CitizenData[(GameData.House.Value / 3) + _selected].InQuarantine == false)
+            {
+                GameData.CitizenData[(GameData.House.Value / 3) + _selected].InQuarantine = true;
+                GameData.QuarantineSize--;
+            }
+        }
+
     }
 
     public void Draw(SpriteBatch spriteBatch)
@@ -59,7 +100,7 @@ public class House : IScene
 
         for(int i = 0; i < 36; i++)
         {
-            if(GameData.CitizenData[i].HouseNumber == GameData.House.Value)
+            if(GameData.CitizenData[i].HouseNumber == GameData.House.Value - 1)
             {
                 Vector2 ResidentDataM = _pixelfont.MeasureString($"Name: {GameData.CitizenData[i].Name}, Temperature: {GameData.CitizenData[i].Temperature.ToString()} Quarantine: {GameData.CitizenData[i].InQuarantine.ToString()}");
                 Vector2 ResidentData = new Vector2((Width / 2) - (ResidentDataM.X / 2), (Height / 4) - (ResidentDataM.Y / 2) + 150 + (50 * number));
@@ -69,5 +110,17 @@ public class House : IScene
                 number++;
             }
         }
+
+        spriteBatch.DrawString(_pixelfont, "<- ->", new Vector2(Width / 2 - 50, Height / 4 + 400), Color.White);
+
+        Vector2 NameM = _pixelfont.MeasureString(GameData.CitizenData[(GameData.House.Value / 3) + _selected].Name);
+        Vector2 Name = new Vector2((Width / 2) - (NameM.X / 2), (Height / 4) + (NameM.Y / 2) + 450);
+
+        spriteBatch.DrawString(_pixelfont, GameData.CitizenData[(GameData.House.Value / 3) + _selected].Name, Name, Color.White);
+
+        Vector2 QuarantineM = _pixelfont.MeasureString("Quarantine");
+        Vector2 Quarantine = new Vector2((Width / 2) - (QuarantineM.X / 2), (Height / 4) + (QuarantineM.Y / 2) + 500);
+
+        spriteBatch.DrawString(_pixelfont, "Quarantine", Quarantine, Color.White);
     }
 }
