@@ -59,64 +59,76 @@ public class Maps : IScene
         Vector2 mousepos = new Vector2(mouse.X, mouse.Y);
 
 
-        if(state.IsKeyDown(Keys.E) && Vector2.Distance(mousepos, camera.WorldToScreen(new Vector2(640, 832))) < 140)
+        if(mouse.LeftButton == ButtonState.Pressed && Vector2.Distance(mousepos, camera.WorldToScreen(new Vector2(640, 832))) < 140)
         {
-            Console.WriteLine("Ház1");
+            GameData.House = 1;
+            _sceneManager.ChangeScene("house");
         }
         
-        if(state.IsKeyDown(Keys.E) && Vector2.Distance(mousepos, camera.WorldToScreen(new Vector2(960, 704))) < 140)
+        if(mouse.LeftButton == ButtonState.Pressed && Vector2.Distance(mousepos, camera.WorldToScreen(new Vector2(960, 704))) < 140)
         {
-            Console.WriteLine("Ház2");
+            GameData.House = 2;
+            _sceneManager.ChangeScene("house");
         }
 
-        if(state.IsKeyDown(Keys.E) && Vector2.Distance(mousepos, camera.WorldToScreen(new Vector2(1344, 768))) < 140)
+        if(mouse.LeftButton == ButtonState.Pressed && Vector2.Distance(mousepos, camera.WorldToScreen(new Vector2(1344, 768))) < 140)
         {
-            Console.WriteLine("Ház3");
+            GameData.House = 3;
+            _sceneManager.ChangeScene("house");
         }
 
-        if(state.IsKeyDown(Keys.E) && Vector2.Distance(mousepos, camera.WorldToScreen(new Vector2(768, 1216))) < 140)
+        if(mouse.LeftButton == ButtonState.Pressed && Vector2.Distance(mousepos, camera.WorldToScreen(new Vector2(768, 1216))) < 140)
         {
-            Console.WriteLine("Ház4");
+            GameData.House = 4;
+            _sceneManager.ChangeScene("house");
         }
 
-        if(state.IsKeyDown(Keys.E) && Vector2.Distance(mousepos, camera.WorldToScreen(new Vector2(1600, 1280))) < 140)
+        if(mouse.LeftButton == ButtonState.Pressed && Vector2.Distance(mousepos, camera.WorldToScreen(new Vector2(1600, 1280))) < 140)
         {
-            Console.WriteLine("Ház5");
+            GameData.House = 5;
+            _sceneManager.ChangeScene("house");
         }
         
-        if(state.IsKeyDown(Keys.E) && Vector2.Distance(mousepos, camera.WorldToScreen(new Vector2(1920, 1152))) < 140)
+        if(mouse.LeftButton == ButtonState.Pressed && Vector2.Distance(mousepos, camera.WorldToScreen(new Vector2(1920, 1152))) < 140)
         {
-            Console.WriteLine("Ház6");
+            GameData.House = 6;
+            _sceneManager.ChangeScene("house");
         }
 
-        if(state.IsKeyDown(Keys.E) && Vector2.Distance(mousepos, camera.WorldToScreen(new Vector2(448, 1600))) < 140)
+        if(mouse.LeftButton == ButtonState.Pressed && Vector2.Distance(mousepos, camera.WorldToScreen(new Vector2(448, 1600))) < 140)
         {
-            Console.WriteLine("Ház7");
+            GameData.House = 7;
+            _sceneManager.ChangeScene("house");
         }
 
-        if(state.IsKeyDown(Keys.E) && Vector2.Distance(mousepos, camera.WorldToScreen(new Vector2(1088, 1536))) < 140)
+        if(mouse.LeftButton == ButtonState.Pressed && Vector2.Distance(mousepos, camera.WorldToScreen(new Vector2(1088, 1536))) < 140)
         {
-            Console.WriteLine("Ház8");
+            GameData.House = 8;
+            _sceneManager.ChangeScene("house");
         }
 
-        if(state.IsKeyDown(Keys.E) && Vector2.Distance(mousepos, camera.WorldToScreen(new Vector2(2304, 1472))) < 140)
+        if(mouse.LeftButton == ButtonState.Pressed && Vector2.Distance(mousepos, camera.WorldToScreen(new Vector2(2304, 1472))) < 140)
         {
-            Console.WriteLine("Ház9");
+            GameData.House = 9;
+            _sceneManager.ChangeScene("house");
         }
         
-        if(state.IsKeyDown(Keys.E) && Vector2.Distance(mousepos, camera.WorldToScreen(new Vector2(768, 1920))) < 140)
+        if(mouse.LeftButton == ButtonState.Pressed && Vector2.Distance(mousepos, camera.WorldToScreen(new Vector2(768, 1920))) < 140)
         {
-            Console.WriteLine("Ház10");
+            GameData.House = 10;
+            _sceneManager.ChangeScene("house");
         }
 
-        if(state.IsKeyDown(Keys.E) && Vector2.Distance(mousepos, camera.WorldToScreen(new Vector2(1536, 1792))) < 140)
+        if(mouse.LeftButton == ButtonState.Pressed && Vector2.Distance(mousepos, camera.WorldToScreen(new Vector2(1536, 1792))) < 140)
         {
-            Console.WriteLine("Ház11");
+            GameData.House = 11;
+            _sceneManager.ChangeScene("house");
         }
 
-        if(state.IsKeyDown(Keys.E) && Vector2.Distance(mousepos, camera.WorldToScreen(new Vector2(2304, 1920))) < 140)
+        if(mouse.LeftButton == ButtonState.Pressed && Vector2.Distance(mousepos, camera.WorldToScreen(new Vector2(2304, 1920))) < 140)
         {
-            Console.WriteLine("Ház12");
+            GameData.House = 12;
+            _sceneManager.ChangeScene("house");
         }
     }
 
