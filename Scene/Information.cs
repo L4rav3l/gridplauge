@@ -51,9 +51,115 @@ public class Information : IScene
         Vector2 ToggleM = _pixelfont.MeasureString("OPEN/CLOSE DOOR");
         if(Vector2.Distance(new Vector2((Width / 2) - (ToggleM.X / 2) + 177, (Height / 4) - (ToggleM.Y / 2) + 380), new Vector2(mouse.X, mouse.Y)) < 70 && mouse.LeftButton == ButtonState.Pressed && _cooldown <= 0)
         {
-            GameData.BorderClosed = !GameData.BorderClosed;
+            GameData.WillBorderClosed = !GameData.WillBorderClosed;
             _cooldown = 300;   
         }
+
+        Vector2 NextDayM = _pixelfont.MeasureString("Next Day");
+
+        if(Vector2.Distance(new Vector2((Width / 2) - (NextDayM.X / 2) + 142, (Height / 4) - (NextDayM.Y / 2) + 587), new Vector2(mouse.X, mouse.Y)) < 70 && mouse.LeftButton == ButtonState.Pressed && _cooldown <= 0)
+        {
+            NextDay();
+            _sceneManager.ChangeScene("maps");
+            _cooldown = 300;
+        }
+    }
+
+    public void NextDay()
+    {
+        Random rnd = new Random();
+
+        GameData.Days++;
+
+        bool HasInfection = false;
+
+        for(int i = 0; i < 36; i++)
+        {
+            if(GameData.CitizenData[i].Infected == true && GameData.CitizenData[i].InQuarantine == false)
+            {
+                HasInfection = true;
+                break;
+            }
+        }
+
+        if(HasInfection)
+        {
+            int toInfect = rnd.Next(1, 2);
+
+            for(int i = 0; i < toInfect;)
+            {
+                int index = rnd.Next(1, 36);
+
+                if(GameData.CitizenData[index-1].Infected == false && GameData.CitizenData[index-1].InQuarantine == false)
+                {
+                    GameData.CitizenData[index-1].Infected = true;
+                    i++;
+                }
+            }
+        }
+
+        if(GameData.BorderClosed == false)
+        {
+            int toInfect = rnd.Next(4, 8);
+            for(int i = 0; i < toInfect;)
+            {
+                int index = rnd.Next(1, 36);
+
+                if(GameData.CitizenData[index-1].Infected == false && GameData.CitizenData[index-1].InQuarantine == false)
+                {
+                    GameData.CitizenData[index-1].Infected = true;
+                    i++;
+                }
+            }
+        }
+
+        for(int i = 0; i < 36; i++)
+        {
+            if(GameData.CitizenData[i].Infected == true && GameData.CitizenData[i].InQuarantine == false)
+            {
+                GameData.CitizenData[i].Temperature = rnd.Next(37, 40);
+            }
+
+            if(GameData.CitizenData[i].Infected == false)
+            {
+                GameData.CitizenData[i].Temperature = rnd.Next(34, 36);
+            }
+
+            if(GameData.CitizenData[i].Infected == false && GameData.CitizenData[i].InQuarantine == true)
+            {
+                GameData.CitizenData[i].InQuarantine = false;
+                GameData.QuarantineSize++;
+            }
+
+            if(GameData.CitizenData[i].Infected == true && GameData.CitizenData[i].InQuarantine == true)
+            {
+                GameData.CitizenData[i].Infected = false;
+            }
+        }
+
+        int infected = 0;
+
+        for(int i = 0; i < 36; i++)
+        {
+            if(GameData.CitizenData[i].Infected == true)
+            {
+                infected++;
+            }
+        }
+
+        Console.WriteLine(infected == 0);
+
+        if(infected == 0)
+        {
+            GameData.GoodEnding = true;
+            _sceneManager.ChangeScene("end");
+        } else if(infected > 28)
+        {
+            GameData.GoodEnding = false;
+            _sceneManager.ChangeScene("end");
+        }
+
+        GameData.BorderClosed = GameData.WillBorderClosed;
     }
 
     public void Draw(SpriteBatch spriteBatch)
@@ -93,7 +199,7 @@ public class Information : IScene
 
         string borderText = "";
 
-        if(GameData.BorderClosed == true)
+        if(GameData.WillBorderClosed == true)
         {
             borderText = "Border is closed";
         } else {

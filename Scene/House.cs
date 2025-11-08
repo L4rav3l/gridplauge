@@ -116,7 +116,7 @@ public class House : IScene
         spriteBatch.DrawString(_pixelfont, "<- ->", new Vector2(Width / 2 - 50, Height / 4 + 400), Color.White);
 
         Vector2 NameM = _pixelfont.MeasureString(GameData.CitizenData[(GameData.House.Value / 3) + _selected].Name);
-        Vector2 Name = new Vector2((Width / 2) - (NameM.X / 2), (Height / 4) + (NameM.Y / 2) + 450);
+        Vector2 Name = new Vector2((Width / 2) - (NameM.X / 2), (Height / 4) + (NameM.Y / 2) + 500);
 
         spriteBatch.DrawString(_pixelfont, GameData.CitizenData[(GameData.House.Value * 3) - 3 + _selected].Name, Name, Color.White);
 

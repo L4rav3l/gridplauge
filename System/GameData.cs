@@ -7,7 +7,9 @@ public static class GameData
     public static int? House = null;
     public static int QuarantineSize = 4;
     public static int Days = 1;
-    public static bool BorderClosed = false;
+    public static bool BorderClosed = true;
+    public static bool WillBorderClosed = false;
+    public static bool GoodEnding = false;
     public static Citizens[] CitizenData = new Citizens[36];
 }
 
