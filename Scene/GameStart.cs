@@ -155,6 +155,7 @@ public class GameStart : IScene
 
             _sceneManager.AddScene(new Maps(_graphics, _sceneManager, _content), "maps");
             _sceneManager.AddScene(new House(_graphics, _sceneManager, _content), "house");
+            _sceneManager.AddScene(new Information(_graphics, _sceneManager, _content), "information");
             _sceneManager.ChangeScene("maps");
         }
     }

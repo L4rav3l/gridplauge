@@ -14,6 +14,7 @@ public class Maps : IScene
     private ContentManager _content;
     
     private Texture2D _tileset;
+    private SpriteFont _pixelfont;
     private TmxMap map;
 
     private Camera2D camera;
@@ -32,6 +33,7 @@ public class Maps : IScene
         camera.Position = camera.WorldToScreen(new Vector2(489, 914));
 
         _tileset = _content.Load<Texture2D>("texture");
+        _pixelfont = _content.Load<SpriteFont>("pixelfont");
     }
 
     public void Update(GameTime gameTime)
@@ -130,6 +132,14 @@ public class Maps : IScene
             GameData.House = 12;
             _sceneManager.ChangeScene("house");
         }
+
+        Vector2 InformationM = _pixelfont.MeasureString("Information");
+        Vector2 Information = new Vector2((int)((75 + (InformationM.X / 2)) * 0.75f), (int)((75 + (InformationM.Y / 2)) * 0.75f));
+
+        if(Vector2.Distance(Information, new  Vector2(mouse.X, mouse.Y)) <= 90 && mouse.LeftButton == ButtonState.Pressed)
+        {
+            _sceneManager.ChangeScene("information");
+        }
     }
 
     public void Draw(SpriteBatch spriteBatch)
@@ -168,8 +178,10 @@ public class Maps : IScene
                 Vector2 worldPosition = new Vector2(x * map.TileWidth, y * map.TileHeight);
                 Vector2 screenPosition = camera.WorldToScreen(worldPosition);
 
-                spriteBatch.Draw(_tileset, screenPosition, source, Color.White);
+                spriteBatch.Draw(_tileset, screenPosition, source, Color.White, 0f, Vector2.Zero, 0.99f, SpriteEffects.None, 0.1f);
             }
         }
+
+        spriteBatch.DrawString(_pixelfont, "Information", new Vector2(75, 75), Color.White, 0f, Vector2.Zero, 0.75f, SpriteEffects.None, 0.2f);
     }
 }

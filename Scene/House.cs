@@ -36,6 +36,8 @@ public class House : IScene
         int Width = _graphics.Viewport.Width;
         int Height = _graphics.Viewport.Height;
 
+        Vector2 BackM = _pixelfont.MeasureString("Back");
+
         double elapsed = gameTime.ElapsedGameTime.TotalSeconds * 1000;
 
         if(_clickCooldown >= 0)
@@ -43,7 +45,7 @@ public class House : IScene
             _clickCooldown -= elapsed;
         }
 
-        if(Vector2.Distance(new Vector2(100, 100), new Vector2(mouse.X, mouse.Y)) < 50 && mouse.LeftButton == ButtonState.Pressed)
+        if(Vector2.Distance(new Vector2((Width / 10) * 9 - (BackM.X / 2) + 100, 100 - (BackM.Y / 2)), new Vector2(mouse.X, mouse.Y)) < 50 && mouse.LeftButton == ButtonState.Pressed)
         {
             _sceneManager.ChangeScene("maps");
         }
@@ -67,9 +69,9 @@ public class House : IScene
         {
             _clickCooldown = 400;
 
-            if(GameData.QuarantineSize > 0 && GameData.CitizenData[(GameData.House.Value / 3) + _selected].InQuarantine == false)
+            if(GameData.QuarantineSize > 0 && GameData.CitizenData[(GameData.House.Value * 3) - 3 + _selected].InQuarantine == false)
             {
-                GameData.CitizenData[(GameData.House.Value / 3) + _selected].InQuarantine = true;
+                GameData.CitizenData[(GameData.House.Value * 3) - 3 + _selected].InQuarantine = true;
                 GameData.QuarantineSize--;
             }
         }
@@ -82,7 +84,7 @@ public class House : IScene
         int Height = _graphics.Viewport.Height;
 
         Vector2 BackM = _pixelfont.MeasureString("Back");
-        Vector2 Back = new Vector2(100 - (BackM.X / 2), 100 - (BackM.Y / 2));
+        Vector2 Back = new Vector2((Width / 10) * 9 - (BackM.X / 2) + 50, 100 - (BackM.Y / 2));
 
         spriteBatch.DrawString(_pixelfont, "Back", Back, Color.White);
 
@@ -116,7 +118,7 @@ public class House : IScene
         Vector2 NameM = _pixelfont.MeasureString(GameData.CitizenData[(GameData.House.Value / 3) + _selected].Name);
         Vector2 Name = new Vector2((Width / 2) - (NameM.X / 2), (Height / 4) + (NameM.Y / 2) + 450);
 
-        spriteBatch.DrawString(_pixelfont, GameData.CitizenData[(GameData.House.Value / 3) + _selected].Name, Name, Color.White);
+        spriteBatch.DrawString(_pixelfont, GameData.CitizenData[(GameData.House.Value * 3) - 3 + _selected].Name, Name, Color.White);
 
         Vector2 QuarantineM = _pixelfont.MeasureString("Quarantine");
         Vector2 Quarantine = new Vector2((Width / 2) - (QuarantineM.X / 2), (Height / 4) + (QuarantineM.Y / 2) + 500);
