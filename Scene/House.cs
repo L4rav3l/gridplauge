@@ -40,12 +40,18 @@ public class House : IScene
 
         double elapsed = gameTime.ElapsedGameTime.TotalSeconds * 1000;
 
+        if(GameData.Entered == true)
+        {
+            GameData.Entered = false;
+            _clickCooldown = 500;
+        }
+
         if(_clickCooldown >= 0)
         {
             _clickCooldown -= elapsed;
         }
 
-        if(Vector2.Distance(new Vector2((Width / 10) * 9 - (BackM.X / 2) + 100, 100 - (BackM.Y / 2)), new Vector2(mouse.X, mouse.Y)) < 50 && mouse.LeftButton == ButtonState.Pressed)
+        if(Vector2.Distance(new Vector2((Width / 10) * 9 - (BackM.X / 2) + 100, 100 - (BackM.Y / 2)), new Vector2(mouse.X, mouse.Y)) < 50 && mouse.LeftButton == ButtonState.Pressed && _clickCooldown <= 0)
         {
             _sceneManager.ChangeScene("maps");
         }

@@ -62,77 +62,107 @@ public class Maps : IScene
 
         Vector2 mousepos = new Vector2(mouse.X, mouse.Y);
 
+        double elapsed = gameTime.ElapsedGameTime.TotalSeconds * 1000;
+
+        if(_cooldown > 0)
+        {
+            _cooldown -= elapsed;
+        }
 
         if(mouse.LeftButton == ButtonState.Pressed && Vector2.Distance(mousepos, camera.WorldToScreen(new Vector2(640, 832))) < 140 && _cooldown <= 0)
         {
             GameData.House = 1;
+            GameData.Entered = true;
             _sceneManager.ChangeScene("house");
+            _cooldown = 500;
         }
         
         if(mouse.LeftButton == ButtonState.Pressed && Vector2.Distance(mousepos, camera.WorldToScreen(new Vector2(960, 704))) < 140 && _cooldown <= 0)
         {
             GameData.House = 2;
+            GameData.Entered = true;
             _sceneManager.ChangeScene("house");
+            _cooldown = 500;
         }
 
         if(mouse.LeftButton == ButtonState.Pressed && Vector2.Distance(mousepos, camera.WorldToScreen(new Vector2(1344, 768))) < 140 && _cooldown <= 0)
         {
             GameData.House = 3;
+            GameData.Entered = true;
             _sceneManager.ChangeScene("house");
+            _cooldown = 500;
         }
 
         if(mouse.LeftButton == ButtonState.Pressed && Vector2.Distance(mousepos, camera.WorldToScreen(new Vector2(768, 1216))) < 140 && _cooldown <= 0)
         {
             GameData.House = 4;
+            GameData.Entered = true;
             _sceneManager.ChangeScene("house");
+            _cooldown = 500;
         }
 
         if(mouse.LeftButton == ButtonState.Pressed && Vector2.Distance(mousepos, camera.WorldToScreen(new Vector2(1600, 1280))) < 140 && _cooldown <= 0)
         {
             GameData.House = 5;
+            GameData.Entered = true;
             _sceneManager.ChangeScene("house");
+            _cooldown = 500;
         }
         
         if(mouse.LeftButton == ButtonState.Pressed && Vector2.Distance(mousepos, camera.WorldToScreen(new Vector2(1920, 1152))) < 140 && _cooldown <= 0)
         {
             GameData.House = 6;
+            GameData.Entered = true;
             _sceneManager.ChangeScene("house");
+            _cooldown = 500;
         }
 
         if(mouse.LeftButton == ButtonState.Pressed && Vector2.Distance(mousepos, camera.WorldToScreen(new Vector2(448, 1600))) < 140 && _cooldown <= 0)
         {
             GameData.House = 7;
+            GameData.Entered = true;
             _sceneManager.ChangeScene("house");
+            _cooldown = 500;
         }
 
         if(mouse.LeftButton == ButtonState.Pressed && Vector2.Distance(mousepos, camera.WorldToScreen(new Vector2(1088, 1536))) < 140 && _cooldown <= 0)
         {
             GameData.House = 8;
+            GameData.Entered = true;
             _sceneManager.ChangeScene("house");
+            _cooldown = 500;
         }
 
         if(mouse.LeftButton == ButtonState.Pressed && Vector2.Distance(mousepos, camera.WorldToScreen(new Vector2(2304, 1472))) < 140 && _cooldown <= 0)
         {
             GameData.House = 9;
+            GameData.Entered = true;
             _sceneManager.ChangeScene("house");
+            _cooldown = 500;
         }
         
         if(mouse.LeftButton == ButtonState.Pressed && Vector2.Distance(mousepos, camera.WorldToScreen(new Vector2(768, 1920))) < 140 && _cooldown <= 0)
         {
             GameData.House = 10;
+            GameData.Entered = true;
             _sceneManager.ChangeScene("house");
+            _cooldown = 500;
         }
 
         if(mouse.LeftButton == ButtonState.Pressed && Vector2.Distance(mousepos, camera.WorldToScreen(new Vector2(1536, 1792))) < 140 && _cooldown <= 0)
         {
             GameData.House = 11;
+            GameData.Entered = true;
             _sceneManager.ChangeScene("house");
+            _cooldown = 500;
         }
 
         if(mouse.LeftButton == ButtonState.Pressed && Vector2.Distance(mousepos, camera.WorldToScreen(new Vector2(2304, 1920))) < 140 && _cooldown <= 0)
         {
             GameData.House = 12;
+            GameData.Entered = true;
             _sceneManager.ChangeScene("house");
+            _cooldown = 500;
         }
 
         Vector2 InformationM = _pixelfont.MeasureString("Information");

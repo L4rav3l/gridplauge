@@ -10,6 +10,7 @@ public static class GameData
     public static bool BorderClosed = false;
     public static bool WillBorderClosed = false;
     public static bool GoodEnding = false;
+    public static bool Entered = false;
     public static Citizens[] CitizenData = new Citizens[36];
 }
 
