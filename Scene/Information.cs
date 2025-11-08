@@ -60,7 +60,6 @@ public class Information : IScene
         if(Vector2.Distance(new Vector2((Width / 2) - (NextDayM.X / 2) + 142, (Height / 4) - (NextDayM.Y / 2) + 587), new Vector2(mouse.X, mouse.Y)) < 70 && mouse.LeftButton == ButtonState.Pressed && _cooldown <= 0)
         {
             NextDay();
-            _sceneManager.ChangeScene("maps");
             _cooldown = 300;
         }
     }
@@ -147,16 +146,18 @@ public class Information : IScene
             }
         }
 
-        Console.WriteLine(infected == 0);
-
         if(infected == 0)
         {
+            Console.WriteLine("jó ending");
             GameData.GoodEnding = true;
+            Console.WriteLine(GameData.GoodEnding);
             _sceneManager.ChangeScene("end");
-        } else if(infected > 28)
+        } else if(infected >= 28)
         {
             GameData.GoodEnding = false;
             _sceneManager.ChangeScene("end");
+        } else {
+            _sceneManager.ChangeScene("maps");
         }
 
         GameData.BorderClosed = GameData.WillBorderClosed;

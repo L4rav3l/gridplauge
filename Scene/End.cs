@@ -27,7 +27,13 @@ public class End : IScene
 
     public void Update(GameTime gameTime)
     {
-        
+        KeyboardState state = Keyboard.GetState();
+
+
+        if(state.IsKeyDown(Keys.E))
+        {
+            _sceneManager.ChangeScene("menu");
+        }
     }
 
     public void Draw(SpriteBatch spriteBatch)
@@ -39,12 +45,18 @@ public class End : IScene
 
         if(GameData.GoodEnding == true)
         {
-            Vector2 EndingM = _pixelfont.MeasureString("You successfully prevented the spread of COVID-19. Because of this, you received the most expensive mansion in the province.");
-            Vector2 Ending = new Vector2((Width / 2) - (EndingM.X / 2), (Height / 2) - (EndingM.Y / 2));
+            string text = "You successfully prevented the spread of COVID-19.\nBecause of this, you received the most expensive mansion in the province.\nPress E key";
+            Vector2 textSize = _pixelfont.MeasureString(text);
+            Vector2 position = new Vector2((Width - textSize.X * 0.75f) / 2, (Height - textSize.Y * 0.75f) / 2);
 
-            spriteBatch.DrawString(_pixelfont, "You successfully prevented the spread of COVID-19. Because of this, you received the most expensive mansion in the province.", Ending, Color.White);
+            spriteBatch.DrawString(_pixelfont, text, position, Color.White, 0f, Vector2.Zero, 0.75f, SpriteEffects.None, 0.2f);
+
         } else {
-            
+            string text = "Most of the citizens were infected with COVID-19. So, you failed. Try again.\nPress E key";
+            Vector2 textSize = _pixelfont.MeasureString(text);
+            Vector2 position = new Vector2((Width - textSize.X * 0.75f) / 2, (Height - textSize.Y * 0.75f) / 2);
+
+            spriteBatch.DrawString(_pixelfont, text, position, Color.White, 0f, Vector2.Zero, 0.75f, SpriteEffects.None, 0.2f);
         }
     }
 }

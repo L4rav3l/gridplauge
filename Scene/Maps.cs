@@ -19,6 +19,8 @@ public class Maps : IScene
 
     private Camera2D camera;
 
+    private double _cooldown;
+
     public Maps(GraphicsDevice _graphics, SceneManager _sceneManager, ContentManager _content)
     {
         this._graphics = _graphics;
@@ -61,73 +63,73 @@ public class Maps : IScene
         Vector2 mousepos = new Vector2(mouse.X, mouse.Y);
 
 
-        if(mouse.LeftButton == ButtonState.Pressed && Vector2.Distance(mousepos, camera.WorldToScreen(new Vector2(640, 832))) < 140)
+        if(mouse.LeftButton == ButtonState.Pressed && Vector2.Distance(mousepos, camera.WorldToScreen(new Vector2(640, 832))) < 140 && _cooldown <= 0)
         {
             GameData.House = 1;
             _sceneManager.ChangeScene("house");
         }
         
-        if(mouse.LeftButton == ButtonState.Pressed && Vector2.Distance(mousepos, camera.WorldToScreen(new Vector2(960, 704))) < 140)
+        if(mouse.LeftButton == ButtonState.Pressed && Vector2.Distance(mousepos, camera.WorldToScreen(new Vector2(960, 704))) < 140 && _cooldown <= 0)
         {
             GameData.House = 2;
             _sceneManager.ChangeScene("house");
         }
 
-        if(mouse.LeftButton == ButtonState.Pressed && Vector2.Distance(mousepos, camera.WorldToScreen(new Vector2(1344, 768))) < 140)
+        if(mouse.LeftButton == ButtonState.Pressed && Vector2.Distance(mousepos, camera.WorldToScreen(new Vector2(1344, 768))) < 140 && _cooldown <= 0)
         {
             GameData.House = 3;
             _sceneManager.ChangeScene("house");
         }
 
-        if(mouse.LeftButton == ButtonState.Pressed && Vector2.Distance(mousepos, camera.WorldToScreen(new Vector2(768, 1216))) < 140)
+        if(mouse.LeftButton == ButtonState.Pressed && Vector2.Distance(mousepos, camera.WorldToScreen(new Vector2(768, 1216))) < 140 && _cooldown <= 0)
         {
             GameData.House = 4;
             _sceneManager.ChangeScene("house");
         }
 
-        if(mouse.LeftButton == ButtonState.Pressed && Vector2.Distance(mousepos, camera.WorldToScreen(new Vector2(1600, 1280))) < 140)
+        if(mouse.LeftButton == ButtonState.Pressed && Vector2.Distance(mousepos, camera.WorldToScreen(new Vector2(1600, 1280))) < 140 && _cooldown <= 0)
         {
             GameData.House = 5;
             _sceneManager.ChangeScene("house");
         }
         
-        if(mouse.LeftButton == ButtonState.Pressed && Vector2.Distance(mousepos, camera.WorldToScreen(new Vector2(1920, 1152))) < 140)
+        if(mouse.LeftButton == ButtonState.Pressed && Vector2.Distance(mousepos, camera.WorldToScreen(new Vector2(1920, 1152))) < 140 && _cooldown <= 0)
         {
             GameData.House = 6;
             _sceneManager.ChangeScene("house");
         }
 
-        if(mouse.LeftButton == ButtonState.Pressed && Vector2.Distance(mousepos, camera.WorldToScreen(new Vector2(448, 1600))) < 140)
+        if(mouse.LeftButton == ButtonState.Pressed && Vector2.Distance(mousepos, camera.WorldToScreen(new Vector2(448, 1600))) < 140 && _cooldown <= 0)
         {
             GameData.House = 7;
             _sceneManager.ChangeScene("house");
         }
 
-        if(mouse.LeftButton == ButtonState.Pressed && Vector2.Distance(mousepos, camera.WorldToScreen(new Vector2(1088, 1536))) < 140)
+        if(mouse.LeftButton == ButtonState.Pressed && Vector2.Distance(mousepos, camera.WorldToScreen(new Vector2(1088, 1536))) < 140 && _cooldown <= 0)
         {
             GameData.House = 8;
             _sceneManager.ChangeScene("house");
         }
 
-        if(mouse.LeftButton == ButtonState.Pressed && Vector2.Distance(mousepos, camera.WorldToScreen(new Vector2(2304, 1472))) < 140)
+        if(mouse.LeftButton == ButtonState.Pressed && Vector2.Distance(mousepos, camera.WorldToScreen(new Vector2(2304, 1472))) < 140 && _cooldown <= 0)
         {
             GameData.House = 9;
             _sceneManager.ChangeScene("house");
         }
         
-        if(mouse.LeftButton == ButtonState.Pressed && Vector2.Distance(mousepos, camera.WorldToScreen(new Vector2(768, 1920))) < 140)
+        if(mouse.LeftButton == ButtonState.Pressed && Vector2.Distance(mousepos, camera.WorldToScreen(new Vector2(768, 1920))) < 140 && _cooldown <= 0)
         {
             GameData.House = 10;
             _sceneManager.ChangeScene("house");
         }
 
-        if(mouse.LeftButton == ButtonState.Pressed && Vector2.Distance(mousepos, camera.WorldToScreen(new Vector2(1536, 1792))) < 140)
+        if(mouse.LeftButton == ButtonState.Pressed && Vector2.Distance(mousepos, camera.WorldToScreen(new Vector2(1536, 1792))) < 140 && _cooldown <= 0)
         {
             GameData.House = 11;
             _sceneManager.ChangeScene("house");
         }
 
-        if(mouse.LeftButton == ButtonState.Pressed && Vector2.Distance(mousepos, camera.WorldToScreen(new Vector2(2304, 1920))) < 140)
+        if(mouse.LeftButton == ButtonState.Pressed && Vector2.Distance(mousepos, camera.WorldToScreen(new Vector2(2304, 1920))) < 140 && _cooldown <= 0)
         {
             GameData.House = 12;
             _sceneManager.ChangeScene("house");
