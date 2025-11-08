@@ -171,6 +171,7 @@ public class Maps : IScene
         if(Vector2.Distance(Information, new  Vector2(mouse.X, mouse.Y)) <= 90 && mouse.LeftButton == ButtonState.Pressed)
         {
             _sceneManager.ChangeScene("information");
+            _cooldown = 500;
         }
     }
 

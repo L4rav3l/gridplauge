@@ -16,6 +16,7 @@ public class House : IScene
     
     private int _selected = 0;
     private double _clickCooldown;
+    private double _warningCooldown;
 
     public House(GraphicsDevice _graphics, SceneManager _sceneManager, ContentManager _content)
     {
@@ -39,6 +40,11 @@ public class House : IScene
         Vector2 BackM = _pixelfont.MeasureString("Back");
 
         double elapsed = gameTime.ElapsedGameTime.TotalSeconds * 1000;
+
+        if(_warningCooldown > 0)
+        {
+            _warningCooldown -= elapsed;
+        }
 
         if(GameData.Entered == true)
         {
@@ -75,6 +81,11 @@ public class House : IScene
         {
             _clickCooldown = 400;
 
+            if(GameData.QuarantineSize == 0)
+            {
+                _warningCooldown = 800;
+            }
+
             if(GameData.QuarantineSize > 0 && GameData.CitizenData[(GameData.House.Value * 3) - 3 + _selected].InQuarantine == false)
             {
                 GameData.CitizenData[(GameData.House.Value * 3) - 3 + _selected].InQuarantine = true;
@@ -88,6 +99,14 @@ public class House : IScene
     {
         int Width = _graphics.Viewport.Width;
         int Height = _graphics.Viewport.Height;
+
+        if(_warningCooldown > 0)
+        {   
+            Vector2 WarningM = _pixelfont.MeasureString("There is no more space in quarantine.");
+            Vector2 Warning = new Vector2((Width / 2) - (WarningM.X / 2), (Height / 4) - (WarningM.Y / 2) - 100);
+
+            spriteBatch.DrawString(_pixelfont, "There is no more space in quarantine.", Warning, Color.Red);
+        }
 
         Vector2 BackM = _pixelfont.MeasureString("Back");
         Vector2 Back = new Vector2((Width / 10) * 9 - (BackM.X / 2) + 50, 100 - (BackM.Y / 2));
