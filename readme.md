@@ -5,7 +5,7 @@ In this game, you can defend your province from Covid-19. You are able to close 
 C# monogame
 
 ## Demo video
-coming soon...
+https://youtu.be/CxPNaTTWQxE
 
 ## Build command
 
