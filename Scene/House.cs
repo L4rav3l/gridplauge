@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Media;
 using System;
 
 namespace gridplauge;
@@ -13,6 +14,7 @@ public class House : IScene
     private SceneManager _sceneManager;
 
     private SpriteFont _pixelfont;
+    private Song _Cough;
     
     private int _selected = 0;
     private double _clickCooldown;
@@ -28,6 +30,7 @@ public class House : IScene
     public void LoadContent()
     {
         _pixelfont = _content.Load<SpriteFont>("pixelfont");
+        _Cough = _content.Load<Song>("cough");
     }
 
     public void Update(GameTime gameTime)
@@ -50,6 +53,17 @@ public class House : IScene
         {
             GameData.Entered = false;
             _clickCooldown = 500;
+            
+            Random songrnd = new Random();
+
+            int percentage = songrnd.Next(1, 5);
+            int percentage2 = songrnd.Next(1, 5);
+
+            if(percentage == percentage2)
+            {
+                MediaPlayer.Play(_Cough);
+                MediaPlayer.IsRepeating = false;
+            }
         }
 
         if(_clickCooldown >= 0)

@@ -72,6 +72,12 @@ public class Menu : IScene
                 GameData.Quit = true;
             }
         }
+
+        if(state.IsKeyDown(Keys.E))
+        {
+            _sceneManager.ChangeScene("easteregg");
+        }
+        
     }
 
     public void Draw(SpriteBatch spriteBatch)

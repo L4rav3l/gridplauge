@@ -158,6 +158,10 @@ public class GameStart : IScene
             _sceneManager.AddScene(new Information(_graphics, _sceneManager, _content), "information");
             _sceneManager.AddScene(new End(_graphics, _sceneManager, _content), "end");
             _sceneManager.ChangeScene("maps");
+            GameData.QuarantineSize = 4;
+            GameData.Days = 1;
+            GameData.BorderClosed = false;
+            GameData.WillBorderClosed = false
         }
     }
 

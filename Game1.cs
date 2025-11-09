@@ -16,6 +16,12 @@ public class Game1 : Game
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
         _sceneManager = new();
+
+        _graphics.PreferredBackBufferWidth = 1920;
+        _graphics.PreferredBackBufferHeight = 1080;
+
+        _graphics.IsFullScreen = true;
+        _graphics.ApplyChanges();
     }
 
     protected override void Initialize()
@@ -27,6 +33,7 @@ public class Game1 : Game
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
         _sceneManager.AddScene(new Menu(GraphicsDevice, _sceneManager, Content), "menu");
+        _sceneManager.AddScene(new EasterEgg(GraphicsDevice, _sceneManager, Content), "easteregg");
         _sceneManager.ChangeScene("menu");
     }
 

@@ -173,6 +173,11 @@ public class Maps : IScene
             _sceneManager.ChangeScene("information");
             _cooldown = 500;
         }
+
+        if(state.IsKeyDown(Keys.Escape))
+        {
+            _sceneManager.ChangeScene("menu");
+        }
     }
 
     public void Draw(SpriteBatch spriteBatch)
